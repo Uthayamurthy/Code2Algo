@@ -23,6 +23,7 @@ from rich.console import Console
 from rich.prompt import Prompt
 from rich.syntax import Syntax
 from rich.live import Live
+from rich.panel import Panel
 from rich.progress import Progress, BarColumn, TimeElapsedColumn, SpinnerColumn
 from google import genai
 from google.genai import types
@@ -128,23 +129,25 @@ console = Console()
 head = pyfiglet.figlet_format("C2A", font="block")
 subhead = pyfiglet.figlet_format("Code 2 Algo", font="bubble")
 author = pyfiglet.figlet_format("Copyright (C) 2025 R Uthaya Murthy", font="digital")
+license = Panel("[bold]License : [link=https://github.com/Uthayamurthy/Code2Algo/blob/main/LICENSE]GNU General Public License v3.0[/link][/bold]", expand=False)
 console.print(f'[bold deep_sky_blue4]{head}')
 console.print(f'[bold cyan3]{subhead}')
 console.print(f'[bold cyan1]{author}')
+console.print(license)
 
 if not os.path.isfile('api_key.txt'):
-    api_key = Prompt.ask("[bold blue]Enter your Gemini API key")
+    api_key = Prompt.ask("\n[bold blue]Enter your Gemini API key")
     with open('api_key.txt', 'w') as f:
         f.write(api_key)
 else:
     with open('api_key.txt', 'r') as f:
         api_key = f.read()
-    console.print(f'[bold green]Using Existing Gemini API Keys')
+    console.print(f'\n[bold green]Using Existing Gemini API Keys')
 
 gemini_client = genai.Client(api_key=api_key)
 
-language = Prompt.ask("[bold blue]Programming Language of your code file", choices=["Python", "C"], default="C")
-code_filepath = Prompt.ask("[bold blue]Enter the path to the code file")
+language = Prompt.ask("\n[bold blue]Programming Language of your source code file", choices=["Python", "C"], default="C")
+code_filepath = Prompt.ask("[bold blue]Enter the path and name of your source code file")
 
 if not os.path.isfile(code_filepath):
     console.print(f'[bold red]File not found :(')
