@@ -31,6 +31,7 @@ from prompts import flowchart_instruct, algorithm_instruct
 import re
 import pyfiglet
 import os
+import sys
 
 def exec_code(code: str):
     allowed_globals = {"graphviz": __import__("graphviz")}
@@ -151,7 +152,7 @@ code_filepath = Prompt.ask("[bold blue]Enter the path and name of your source co
 
 if not os.path.isfile(code_filepath):
     console.print(f'[bold red]File not found :(')
-    exit()
+    sys.exit(1)
 
 console.print("\n[bold]Here is your code:\n")
 
@@ -167,4 +168,4 @@ elif choice == "A":
     generate_algorithm(code, language)
 else:
     console.print("[bold red]Invalid choice !")
-    exit()
+    sys.exit(1)
