@@ -77,15 +77,19 @@ def generate_flowchart(code: str, language: str):
             if not exec_code(code):
                 progress.update(task, description="[bold red]Failed! ❌[/bold red]")
                 console.print("[bold red]❌ Execution failed")
+                success = False
             else:
                 progress.update(task, description="[bold green]Done! ✅[/bold green]")
                 console.print("[bold green]Your flowchart has been generated ![/bold green] ✅")
+                success = True
         except Exception as e:
+            success = False
             progress.update(task, description="[bold red]Failed! ❌[/bold red]")
             console.print(f"[bold red]Error: {e}")
 
     progress.stop()
-    console.print(f"[bold green]Saved to {output_filename}.png 🎊🎊")
+    if success:
+        console.print(f"[bold green]Saved to {output_filename}.png 🎊🎊")
 
 def generate_algorithm(code: str, language: str):
     output_filename = Prompt.ask("[bold blue]Enter the name of the output file name (will be saved as text file)")
@@ -117,13 +121,16 @@ def generate_algorithm(code: str, language: str):
 
             progress.update(task, description="[bold green]Done! ✅[/bold green]")
             console.print("[bold green]Your Algorithm has been generated ![/bold green] ✅")
+            success = True
 
         except Exception as e:
             progress.update(task, description="[bold red]Failed! ❌[/bold red]")
             console.print(f"[bold red]Error: {e}")
+            success = False
     progress.stop()
 
-    console.print(f"[bold green]Saved to {output_filename}.txt  🎊🎊")
+    if success:
+        console.print(f"[bold green]Saved to {output_filename}.txt  🎊🎊")
 
 console = Console()
 
