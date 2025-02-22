@@ -1,5 +1,5 @@
 '''
-Code2Algo
+Code2Algo - An AI Powered Tool to generate Algorithm and Flowchart from your source code !
 
     Copyright (C) 2025  R Uthaya Murthy
 
