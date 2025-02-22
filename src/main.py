@@ -19,6 +19,8 @@ Code2Algo - An AI Powered Tool to generate Algorithm and Flowchart from your sou
 Contact Author : uthayamurthy2006@gmail.com
 '''
 
+__VERSION__ = "0.1"
+
 from rich.console import Console
 from rich.prompt import Prompt
 from rich.syntax import Syntax
